@@ -1,0 +1,7 @@
+README.md
+Xssolar.py
+setup.py
+XSsolar.egg-info/PKG-INFO
+XSsolar.egg-info/SOURCES.txt
+XSsolar.egg-info/dependency_links.txt
+XSsolar.egg-info/top_level.txt
