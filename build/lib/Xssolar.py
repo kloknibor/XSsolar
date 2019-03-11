@@ -51,10 +51,10 @@ class Inverter:
                 self.values['totalruntime'] = struct.unpack('>I',''.join([chr(rs.bytes[27]),chr(rs.bytes[26]),chr(rs.bytes[25]),chr(rs.bytes[24])]))[0]
                 self.values['errors']       = struct.unpack('>H',''.join([chr(rs.bytes[7]),chr(rs.bytes[6])]))[0]
                 if (self.values['errors'] < 32768): # inverter error
-                    Debug("Inverter error; " + ErrorDescr(self.values['errors']) +  "("+ str(self.values['errors']) + ")")
+ #                   Debug("Inverter error; " + ErrorDescr(self.values['errors']) +  "("+ str(self.values['errors']) + ")")
 
             else:
-                Debug("Response type does not match request B6")
+  #              Debug("Response type does not match request B6")
 
     def getDailyValues(self, day):
         rq = Request9A(self, day)
@@ -67,7 +67,7 @@ class Inverter:
                 dv['t'] = rs.bytes[5]*5
                 self.dailyValues[day] = dv
             else:
-                Debug("Response type does not match request 9A")
+     #           Debug("Response type does not match request 9A")
 
 class Request:
     """abstract class for building requests"""
@@ -131,11 +131,11 @@ def Read(socket):
         # No response, problably the inverter is not running because it is dark outside
         return rss # empty
     elif (len(bytes) < 9):
-        Debug("Incomplete response")
+    #    Debug("Incomplete response")
     else:             
         while(len(bytes) > 0):
             if not(bytes[4] == 154 or bytes[4] == 193 or bytes[4] == 182): 
-                Debug("Unknown response type")
+   #             Debug("Unknown response type")
                 break
             else:
                 response = bytearray()
@@ -151,7 +151,7 @@ def Read(socket):
                     sum += b
                 sum -= response[-1]
                 if (sum % 256 != response[-1]):
-                    Debug("Incorrect checksum")
+  #                  Debug("Incorrect checksum")
                     break
                 else:
                     rs = Response(response)
@@ -171,7 +171,7 @@ def Web(website, system_id, address, page, params = {}):
         data = response.read()
         conn.close()
     except:
-        Debug("Unable to connect to website " + str(sys.exc_info()[0]))
+ #       Debug("Unable to connect to website " + str(sys.exc_info()[0]))
         return 'error'
     else:
         #print data
@@ -204,7 +204,7 @@ def ErrorDescr (incoming):
         descr = descr[:-2]
     return descr
 
-def Debug(mess):
-    now = datetime.datetime.now()
-    now = now.strftime("%Y-%m-%d %H:%M:%S")
-    print now + ": " + mess + "\r\n"
+#def Debug(mess):
+#    now = datetime.datetime.now()
+#    now = now.strftime("%Y-%m-%d %H:%M:%S")
+#    print now + ": " + mess + "\r\n"

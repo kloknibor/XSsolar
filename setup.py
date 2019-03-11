@@ -3,7 +3,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 setuptools.setup(
      name='XSsolar',  
-     version='0.4',
+     version='0.5',
      py_modules=['XSsolar'] ,
      author="Jorg Janssen & Robin Kolk ",
      author_email="robinkolk@msn.com",
