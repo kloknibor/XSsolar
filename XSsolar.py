@@ -50,10 +50,10 @@ class Inverter:
                 self.values['temp']         = struct.unpack('>b',chr(rs.bytes[23]))[0]
                 self.values['totalruntime'] = struct.unpack('>I',''.join([chr(rs.bytes[27]),chr(rs.bytes[26]),chr(rs.bytes[25]),chr(rs.bytes[24])]))[0]
                 self.values['errors']       = struct.unpack('>H',''.join([chr(rs.bytes[7]),chr(rs.bytes[6])]))[0]
-                if (self.values['errors'] < 32768): # inverter error
+  #              if (self.values['errors'] < 32768): # inverter error
  #                   Debug("Inverter error; " + ErrorDescr(self.values['errors']) +  "("+ str(self.values['errors']) + ")")
 
-            else:
+  #          else:
   #              Debug("Response type does not match request B6")
 
     def getDailyValues(self, day):
@@ -66,7 +66,7 @@ class Inverter:
                 dv['W'] = struct.unpack('>H',''.join([chr(rs.bytes[7]),chr(rs.bytes[6])]))[0]/100.00
                 dv['t'] = rs.bytes[5]*5
                 self.dailyValues[day] = dv
-            else:
+     #       else:
      #           Debug("Response type does not match request 9A")
 
 class Request:
@@ -130,7 +130,7 @@ def Read(socket):
     if (len(bytes) == 0):
         # No response, problably the inverter is not running because it is dark outside
         return rss # empty
-    elif (len(bytes) < 9):
+    #elif (len(bytes) < 9):
     #    Debug("Incomplete response")
     else:             
         while(len(bytes) > 0):
