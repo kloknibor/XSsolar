@@ -1,4 +1,5 @@
 README.md
+XSsolar.py
 Xssolar.py
 setup.py
 XSsolar.egg-info/PKG-INFO

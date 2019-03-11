@@ -3,8 +3,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 setuptools.setup(
      name='XSsolar',  
-     version='0.1',
-     scripts=['Xssolar.py'] ,
+     version='0.4',
+     py_modules=['XSsolar'] ,
      author="Jorg Janssen & Robin Kolk ",
      author_email="robinkolk@msn.com",
      description="Communication for Mastervolt inverters",
